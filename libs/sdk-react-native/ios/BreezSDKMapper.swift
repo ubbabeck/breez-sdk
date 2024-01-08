@@ -1756,6 +1756,9 @@ enum BreezSDKMapper {
         guard let onchainBalanceMsat = nodeState["onchainBalanceMsat"] as? UInt64 else {
             throw SdkError.Generic(message: errMissingMandatoryField(fieldName: "onchainBalanceMsat", typeName: "NodeState"))
         }
+        guard let pendingOnchainBalanceMsat = nodeState["pendingOnchainBalanceMsat"] as? UInt64 else {
+            throw SdkError.Generic(message: errMissingMandatoryField(fieldName: "pendingOnchainBalanceMsat", typeName: "NodeState"))
+        }
         guard let utxosTmp = nodeState["utxos"] as? [[String: Any?]] else {
             throw SdkError.Generic(message: errMissingMandatoryField(fieldName: "utxos", typeName: "NodeState"))
         }
@@ -1785,6 +1788,7 @@ enum BreezSDKMapper {
             blockHeight: blockHeight,
             channelsBalanceMsat: channelsBalanceMsat,
             onchainBalanceMsat: onchainBalanceMsat,
+            pendingOnchainBalanceMsat: pendingOnchainBalanceMsat,
             utxos: utxos,
             maxPayableMsat: maxPayableMsat,
             maxReceivableMsat: maxReceivableMsat,
@@ -1801,6 +1805,7 @@ enum BreezSDKMapper {
             "blockHeight": nodeState.blockHeight,
             "channelsBalanceMsat": nodeState.channelsBalanceMsat,
             "onchainBalanceMsat": nodeState.onchainBalanceMsat,
+            "pendingOnchainBalanceMsat": nodeState.pendingOnchainBalanceMsat,
             "utxos": arrayOf(unspentTransactionOutputList: nodeState.utxos),
             "maxPayableMsat": nodeState.maxPayableMsat,
             "maxReceivableMsat": nodeState.maxReceivableMsat,

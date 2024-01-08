@@ -1582,6 +1582,7 @@ fun asNodeState(nodeState: ReadableMap): NodeState? {
                 "blockHeight",
                 "channelsBalanceMsat",
                 "onchainBalanceMsat",
+                "pendingOnchainBalanceMsat",
                 "utxos",
                 "maxPayableMsat",
                 "maxReceivableMsat",
@@ -1598,6 +1599,7 @@ fun asNodeState(nodeState: ReadableMap): NodeState? {
     val blockHeight = nodeState.getInt("blockHeight").toUInt()
     val channelsBalanceMsat = nodeState.getDouble("channelsBalanceMsat").toULong()
     val onchainBalanceMsat = nodeState.getDouble("onchainBalanceMsat").toULong()
+    val pendingOnchainBalanceMsat = nodeState.getDouble("pendingOnchainBalanceMsat").toULong()
     val utxos = nodeState.getArray("utxos")?.let { asUnspentTransactionOutputList(it) }!!
     val maxPayableMsat = nodeState.getDouble("maxPayableMsat").toULong()
     val maxReceivableMsat = nodeState.getDouble("maxReceivableMsat").toULong()
@@ -1610,6 +1612,7 @@ fun asNodeState(nodeState: ReadableMap): NodeState? {
         blockHeight,
         channelsBalanceMsat,
         onchainBalanceMsat,
+        pendingOnchainBalanceMsat,
         utxos,
         maxPayableMsat,
         maxReceivableMsat,
@@ -1626,6 +1629,7 @@ fun readableMapOf(nodeState: NodeState): ReadableMap {
         "blockHeight" to nodeState.blockHeight,
         "channelsBalanceMsat" to nodeState.channelsBalanceMsat,
         "onchainBalanceMsat" to nodeState.onchainBalanceMsat,
+        "pendingOnchainBalanceMsat" to nodeState.pendingOnchainBalanceMsat,
         "utxos" to readableArrayOf(nodeState.utxos),
         "maxPayableMsat" to nodeState.maxPayableMsat,
         "maxReceivableMsat" to nodeState.maxReceivableMsat,
