@@ -452,7 +452,9 @@ impl Greenlight {
             // pass before the funds can be spent.
             Onchain => {
                 if b.closer() == cln::ChannelSide::Local
-                    && b.status[b.status.len() - 1].contains("DELAYED_OUTPUT_TO_US")
+                    && b.status
+                        .last()
+                        .is_some_and(|status| status.contains("DELAYED_OUTPUT_TO_US"))
                 {
                     a + b.min_to_us_msat.clone().unwrap_or_default().msat
                 } else {
