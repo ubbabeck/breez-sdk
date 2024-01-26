@@ -178,8 +178,12 @@ jobs:
   
   react-native:
     name: Check react native
-    runs-on: macOS-latest
+    runs-on: macos-latest
     steps:
+      - name: Install nix
+        uses: nixbuild/nix-quick-install-action@v26
+      - name: Run nix develop
+        run: nix develop
       - name: Checkout repo
         uses: actions/checkout@v3
 
