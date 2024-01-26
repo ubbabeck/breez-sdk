@@ -186,30 +186,15 @@ jobs:
         uses: nixbuild/nix-quick-install-action@v26
       - name: Run nix develop
         run: nix develop
-      - name: Checkout repo
-        uses: actions/checkout@v3
-
-      - name: Install rust
-        run: |
-          rustup set auto-self-update disable
-          rustup toolchain install stable --profile minimal
 
       - uses: Swatinem/rust-cache@v2
         with:
           workspaces: |
             libs -> target
       
-      - name: Install Protoc
-        uses: arduino/setup-protoc@v2
-        with:
-          version: "23.4"
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-      
       - name: React native codegen
         working-directory: libs/sdk-react-native 
         run: |
-          yarn global add tslint typescript
-          brew install kotlin ktlint swiftformat
           make react-native-codegen
 
       - name: Check git status

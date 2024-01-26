@@ -14,12 +14,16 @@
     devShells.default = pkgs.mkShell{ buildInputs = [
       pkgs.rustc
       pkgs.cargo
+      pkgs.rustup
       pkgs.flutter
       pkgs.kotlin
       pkgs.ktlint
       pkgs.yarn
+      pkgs.protobuf_23
     ];
     shellHook = ''
+      rustup  set auto-self-update disable
+      rustup toolchain install stable --profile minimal
       yarn global add tslint typescript
       '';
   };
