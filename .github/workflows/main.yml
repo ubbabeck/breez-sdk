@@ -180,6 +180,8 @@ jobs:
     name: Check react native
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
       - name: Install nix
         uses: nixbuild/nix-quick-install-action@v26
       - name: Run nix develop
