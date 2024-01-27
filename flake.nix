@@ -25,7 +25,6 @@
       rustup  set auto-self-update disable
       rustup toolchain install stable --profile minimal
       yarn global add tslint typescript
-      make react-native-codegen
       '';
   };
     
